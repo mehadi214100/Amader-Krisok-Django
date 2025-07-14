@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- হিরো সেকশন -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">বাংলাদেশের ফসল</h1>
+            <p class="lead">প্রাচীন কৃষি ঐতিহ্য ও আধুনিক চাষ পদ্ধতির সমন্বয়</p>
+            
+            <div class="search-box">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="ফসলের নাম খুঁজুন...">
+                    <button class="btn btn-light" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফসলের তালিকা -->
+    <section class="crop-list py-5">
+        <div class="container">
+            <div class="row">
+                {% for crop in crops %}
+                <div class="col-md-4">
+                    <div class="card crop-card">
+                        <img src="{{crop.category_image.url }}" class="card-img-top crop-img" alt="ধান">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ crop.category_name }}</h5>
+                            <p class="card-text">{{ crop.description | truncatewords:10 }}</p>
+                            <a href="{% url "all_crops" crop.slug %}" class="btn btn-success">বিস্তারিত জানুন</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-success">আরও ফসল দেখুন</button>
+            </div>
+        </div>
+    </section>
+   
+{% endblock content %}

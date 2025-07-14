@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- ধানের জাতের সাইডবার -->
+        <div class="col-md-3 col-lg-2 p-0 bg-light" style="min-height: 100vh;">
+            <div class="p-3 bg-success text-white">
+                <h5 class="mb-0">জাতসমূহ</h5>
+            </div>
+            
+            <div class="p-3">
+                <input type="text" class="form-control mb-3" placeholder="জাত খুঁজুন...">
+            <div class="list-group">
+                {% for varity in all_varieties %}
+                <a href="{% url 'all_crops' crop_category=varity.crop.slug varity_slug=varity.slug %}" 
+                class="list-group-item list-group-item-action {% if crops_info == varity %}active{% endif %}">
+                    <div class="d-flex justify-content-between">
+                        <span>{{ varity.varity_name }}</span>
+                        <div>
+                            {% if varity.is_new %}
+                                <span class="badge bg-primary">নতুন</span>
+                            {% endif %}
+                            {% if varity.is_popular %}
+                                <span class="badge bg-danger">জনপ্রিয়</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            </div>
+        </div>
+
+        <!-- মূল কন্টেন্ট এরিয়া -->
+        <div class="col-md-9 col-lg-10 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">{{crops_info.varity_name}}</h2>
+                <div>
+                    <span class="badge bg-success me-1">{{crops_info.get_verity_type_display}}</span>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="{{crops_info.image.url}}" class="card-img-top" alt="{{crops_info.varity_name}}">
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="text-muted small">ফসলকাল</div>
+                                    <div class="fw-bold">{{crops_info.duration}} দিন</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="text-muted small">গড় ফলন</div>
+                                    <div class="fw-bold">{{crops_info.yield_amount}} টন/হেক্টর</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="text-muted small">উদ্ভাবন বছর</div>
+                                    <div class="fw-bold">{{crops_info.year_released}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">মৌলিক তথ্য</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>জাতের ধরন:</strong></span>
+                                    <span>{{crops_info.get_verity_type_display}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>উদ্ভাবক প্রতিষ্ঠান:</strong></span>
+                                    <span>{{crops_info.institute}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>প্রস্তাবিত এলাকা:</strong></span>
+                                    <span>{{crops_info.suitable_area}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>ধরন:</strong></span>
+                                    <span>{{crops_info.grain_type}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">চাষ পদ্ধতি</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-primary">বীজ বপন ও চারা রোপণ:</h6>
+                            <p>{{crops_info.cultivation_info.body | safe }}</p>
+                            
+                            <h6 class="text-primary mt-3">সার ব্যবস্থাপনা:</h6>
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>সারের নাম</th>
+                                        <th>পরিমাণ (কেজি/হেক্টর)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fertilizer in crops_info.fertilizers.all  %}
+                                    <tr>
+                                        <td>{{fertilizer.name}}</td>
+                                        <td>{{fertilizer.amount_per_hectare}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">রোগ ও পোকামাকড় ব্যবস্থাপনা</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-warning">প্রধান রোগ:</h6>
+                            {% if crops_info.disease_info.major_diseases %}
+                            <ul>
+                                {% for disease in crops_info.disease_info.major_diseases.splitlines %}
+                                    <li>{{ disease }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            <h6 class="text-warning mt-3">প্রধান পোকা:</h6>
+                            {% if crops_info.disease_info.major_pests %}
+                            <ul>
+                                {% for pests in crops_info.disease_info.major_pests.splitlines %}
+                                    <li>{{ pests }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            
+                            <div class="alert alert-info mt-3">
+                                <strong>পরামর্শ:</strong> {{crops_info.disease_info.advice}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">অতিরিক্ত তথ্য</h5>
+                </div>
+                <div class="card-body">
+                    {{crops_info.additional_info}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

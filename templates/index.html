@@ -1,0 +1,477 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header {% if message.tags == 'error' %}bg-danger{% else %}bg-{{ message.tags }}{% endif %} text-white">
+                    <strong class="me-auto">
+                        {% if message.tags == 'error' %}
+                            Error
+                        {% elif message.tags == 'success' %}
+                            Success
+                        {% elif message.tags == 'warning' %}
+                            Warning
+                        {% else %}
+                            Message
+                        {% endif %}
+                    </strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+    <div
+      id="carouselExampleFade"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <img src="{% static "image/crop-info.png" %}" class="d-block w-100" alt="ফসল তথ্য" />
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption d-block">
+            <h2>ফসল চাষের সম্পূর্ণ গাইড</h2>
+            <p>প্রতিটি মৌসুমের জন্য সঠিক পদ্ধতি জানতে ক্লিক করুন।</p>
+            <a href="#" class="btn btn-success">বিস্তারিত জানুন</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <img src="{% static "image/machine.png" %}" class="d-block w-100" alt="মেশিন ভাড়া" />
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption  d-block">
+            <h2>যন্ত্রপাতি ভাড়া ও শ্রমিক বুকিং</h2>
+            <p>এখন সহজেই কৃষি কাজে যন্ত্রপাতি ও শ্রমিক ভাড়া করুন।</p>
+            <a href="#" class="btn btn-success">ভাড়া নিন</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <img
+            src="{% static "image/market.png" %}"
+            class="d-block w-100"
+            alt="অনলাইন বাজার"
+          />
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption  d-block">
+            <h2>আপনার ফসল বিক্রি করুন সরাসরি</h2>
+            <p>সরাসরি ক্রেতার কাছে বিক্রি করে ন্যায্য দাম নিশ্চিত করুন।</p>
+            <a href="#" class="btn btn-success">বাজারে যান</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img
+            src="{% static "image/advice.png" %}"
+            class="d-block w-100"
+            alt="অনলাইন বাজার"
+          />
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption  d-block">
+            <h2>কৃষি অফিসার এর সাথে যোগাযোগ করুন</h2>
+            <p>কৃষি কর্মকর্তার থেকে উপদেশ নিন</p>
+            <a href="#" class="btn btn-success">এক্সপার্ট এর সাহায্য নিন</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img
+            src="{% static "image/course.png" %}"
+            class="d-block w-100"
+            alt="অনলাইন বাজার"
+          />
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption  d-block">
+            <h2>কৃষি বিষয়ক কোর্স করুন</h2>
+            <p>প্রশিক্ষণ এর মাধ্যমে ফসল উতপাদন শিখুন</p>
+            <a href="#" class="btn btn-success">কোর্স করুন</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <section class="partners-section py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="mb-3 fw-bold">আমাদের অংশীদার</h2>
+        <p class="mb-5 text-muted">যারা কৃষি উন্নয়নে আমাদের পাশে আছে</p>
+
+        <div class="row justify-content-center align-items-center g-4">
+          <!-- Partner 1 -->
+          <div class="col-6 col-sm-4 col-md-3">
+            <img
+              src="{% static "image/brac.png" %}"
+              class="img-fluid partner-logo"
+              alt="BRAC"
+            />
+          </div>
+
+          <!-- Partner 2 -->
+          <div class="col-6 col-sm-4 col-md-3">
+            <img
+              src="{% static "image/bank.png" %}"
+              class="img-fluid partner-logo"
+              alt="Krishi Bank"
+            />
+          </div>
+
+          <!-- Partner 3 -->
+          <div class="col-6 col-sm-4 col-md-3">
+            <img
+              src="{% static "image/ifad.png" %}"
+              class="img-fluid partner-logo"
+              alt="IFAD"
+            />
+          </div>
+
+          <!-- Partner 4 -->
+          <div class="col-6 col-sm-4 col-md-3">
+            <img
+              src="{% static "image/agriculture-gov.png" %}"
+              class="img-fluid partner-logo"
+              alt="Ministry of Agriculture"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container text-center pb-5">
+        <h2 class="text-center">সব কৃষি সল্যুশন এক প্ল্যাটফর্মে</h2>
+        <p class="mb-5 text-muted">
+          প্রযুক্তির সাহায্যে কৃষি সেবা এখন হাতের মুঠোই
+        </p>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/crop-info.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">ফসল চাষ তথ্য</h5>
+                <p class="card-text">
+                  বিভিন্ন ফসলের চাষাবাদ, মৌসুম, ও পরিচর্যার বিস্তারিত তথ্য...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Repeat for other 3 cards -->
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/disease.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">রোগ চিহ্নিতকরণ</h5>
+                <p class="card-text">
+                  আক্রান্ত গাছের ছবি আপলোড করে রোগ শনাক্ত ও সমাধান...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/advice.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">কৃষি পরামর্শ</h5>
+                <p class="card-text">
+                  কৃষি বিশেষজ্ঞদের সঙ্গে পরামর্শ নিয়ে সঠিক সিদ্ধান্ত...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/market.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">অনলাইন বাজার</h5>
+                <p class="card-text">
+                  নিজের উৎপাদিত ফসল অনলাইনে সরাসরি বিক্রি...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/machine.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">শ্রমিক ও যন্ত্রপাতি ভাড়া</h5>
+                <p class="card-text">
+                  কৃষি কাজে প্রয়োজনীয় শ্রমিক ও যন্ত্রপাতি সহজেই ভাড়া...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/loan.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">ঋণ সহায়তা</h5>
+                <p class="card-text">
+                  কৃষির জন্য উপযুক্ত ঋণ ও সহযোগিতা সম্পর্কিত তথ্য...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="{% static "image/course.png" %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">প্রশিক্ষণ ও কোর্স</h5>
+                <p class="card-text">
+                  আধুনিক কৃষি পদ্ধতি শেখার জন্য অনলাইন প্রশিক্ষণ ও ভিডিও
+                  কোর্স...
+                </p>
+                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="success-stories" class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="mb-3 fw-bold">সফলতার গল্প</h2>
+    <p class="mb-5 text-muted">যারা কৃষি উন্নয়নে নিজেদের জীবন বদলে দিয়েছেন</p>
+
+    <div class="row justify-content-center">
+      <!-- Story 1 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="{% static "image/farmer1.png" %}" class="card-img-top" alt="Farmer 1" />
+          <div class="card-body">
+            <h5 class="card-title">আব্দুল করিম</h5>
+            <p class="card-text text-muted">
+              আধুনিক প্রযুক্তি ব্যবহার করে ধান উৎপাদনে তিনগুণ ফলন পেয়েছেন...
+            </p>
+            <a href="#" class="text-success fw-semibold">গল্পটি পড়ুন</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="{% static "image/farmer2.png" %}" class="card-img-top" alt="Farmer 2" />
+          <div class="card-body">
+            <h5 class="card-title">রুবিনা বেগম</h5>
+            <p class="card-text text-muted">
+              কোর্স করার পর নিজের জমিতে সবজি উৎপাদন শুরু করেন এবং লাভবান হন...
+            </p>
+            <a href="#" class="text-success fw-semibold">গল্পটি পড়ুন</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="https://naogaon.site/wp-content/uploads/2024/03/farmer-paddy-smile-naogaon-sadar-1024x683.jpg.webp" class="card-img-top" alt="Farmer 3" />
+          <div class="card-body">
+            <h5 class="card-title">শফিকুল ইসলাম</h5>
+            <p class="card-text text-muted">
+              অ্যাপ ব্যবহার করে পোকামাকড়ের রোগ চিহ্নিত করে ফসল বাঁচিয়েছেন...
+            </p>
+            <a href="#" class="text-success fw-semibold">গল্পটি পড়ুন</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="{% static "image/farmer4.png" %}" class="card-img-top" alt="Farmer 4" />
+          <div class="card-body">
+            <h5 class="card-title">নাজমুল হোসেন</h5>
+            <p class="card-text text-muted">
+              অনলাইন বাজারে সরাসরি বিক্রি করে পেয়েছেন ন্যায্য দাম ও প্রশংসা...
+            </p>
+            <a href="#" class="text-success fw-semibold">গল্পটি পড়ুন</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="expert-opinion" class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Text Part -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h2 class="fw-bold mb-3">বিশেষজ্ঞদের মতামত</h2>
+        <p class="text-muted mb-3">🌱 কৃষি অফিসার ও গবেষকদের বাস্তব অভিজ্ঞতা এবং উন্নত প্রযুক্তি ব্যবহারের সুপারিশ আপনার কৃষিকাজে আনতে পারে নতুন সম্ভাবনা।</p>
+        <p class="text-muted mb-4">📺 লাইভ সেশন প্রতিদিন বিকেল ৫টা — যেখানে বিশেষজ্ঞরা আপনার প্রশ্নের উত্তর দিবেন সরাসরি।</p>
+        <a href="#" class="btn btn-success px-4 py-2 fw-semibold">পরামর্শ নিন</a>
+      </div>
+
+      <!-- Image Part -->
+      <div class="col-md-6 text-center">
+        <img src="{% static "image/advice.png" %}" alt="Expert Opinion" class="img-fluid rounded shadow-sm" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="intro-video" class="py-5" style="background-color: #f5e7da;">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <!-- Text -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h2 class="fw-bold mb-3">আমাদের উদ্দেশ্য</h2>
+        <p class="text-muted mb-4">
+          “আমাদের কৃষক কেন প্রয়োজন?” — আমাদের প্ল্যাটফর্মে কীভাবে কাজ করে ? আমাদের সম্পর্কে ।
+        </p>
+        <p class="text-success fw-semibold">
+          ভিডিও সময়কাল: ১-২ মিনিট | বক্তা: মোঃ মেহেদী হাসান
+        </p>
+      </div>
+
+      <!-- YouTube Video Embed -->
+      <div class="col-md-6">
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe
+            src="https://www.youtube.com/embed/NjH8Iem91uI?si=vxXKxgtEAOJZYHG_"
+            title="আমাদের কৃষক"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="faq" class="py-5" style="background-color: #e6f4ea;">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">সচরাচর জিজ্ঞাসা</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <!-- Question 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            আমি কিভাবে লগইন করব?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-muted">
+            লগইন পেজে গিয়ে আপনার মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে লগইন করুন। যদি অ্যাকাউন্ট না থাকে, তাহলে রেজিস্ট্রেশন করুন।
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            রোগের ছবি কোথায় আপলোড করব?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-muted">
+            "রোগ চিহ্নিতকরণ" সেকশনে গিয়ে আক্রান্ত গাছের ছবি আপলোড করুন। আমাদের সিস্টেম ছবি বিশ্লেষণ করে রোগ শনাক্ত করবে।
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            অনলাইনে ফসল বিক্রি কীভাবে করব?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-muted">
+            "বাজার" মেনুতে গিয়ে আপনার ফসলের তথ্য ও ছবি দিয়ে একটি পোস্ট করুন। ক্রেতারা সরাসরি যোগাযোগ করতে পারবেন।
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="contact" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">যোগাযোগ করুন</h2>
+
+    <div class="row">
+      <!-- Contact Info -->
+      <div class="col-md-6 mb-4">
+        <h5 class="fw-semibold mb-3">📍 ঠিকানা</h5>
+        <p class="text-muted">আমাদের কৃষক অফিস, ১২৩ কৃষি ভবন রোড, ঢাকা ১২০৫</p>
+
+        <h5 class="fw-semibold mt-4 mb-3">📧 ইমেইল</h5>
+        <p class="text-muted">support@amaderkrishok.com</p>
+
+        <h5 class="fw-semibold mt-4 mb-3">📞 জরুরি ফোন</h5>
+        <p class="text-muted">+880 1700 000 000 (সকাল ৯টা - রাত ৯টা)</p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-md-6">
+        <form action="#" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">আপনার নাম</label>
+            <input type="text" class="form-control form-control-lg" id="name" placeholder="আপনার নাম লিখুন" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label fw-semibold">মেসেজ</label>
+            <textarea class="form-control form-control-lg" id="message" rows="5" placeholder="আপনার বার্তা লিখুন" required></textarea>
+          </div>
+
+
+
+          <button type="submit" class="btn btn-success px-4 py-2 fw-semibold">পাঠিয়ে দিন</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

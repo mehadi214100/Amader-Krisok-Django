@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    <!-- Left side with image -->
+                    <div class="col-md-4 d-none d-md-block bg-gradient" style="background: #2b9348;">
+                        <div class="d-flex align-items-center justify-content-center h-100 p-4">
+                            <div class="text-center text-white">
+                                <i class="bi bi-people-fill display-3 mb-3"></i>
+                                <h3 class="fw-bold mb-3">স্বাগতম</h3>
+                                <p class="mb-0">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side with form -->
+                    <div class="col-md-8">
+                        <div class="card-body p-4 p-xl-5">
+                            <!-- Error Messages -->
+                            
+                            <div class="text-center mb-4">
+                                <h2 class="fw-bold" style="color: #2b9348;">লগইন</h2>
+                                <p class="text-muted">আপনার তথ্য দিন</p>
+                            </div>
+                            
+                            {% if messages %}
+                            <div class="mb-3">
+                                {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <p class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </p>
+                                {% else %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% endif %}
+
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <form method="post">
+                                {% csrf_token %}
+                                
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label class="form-label">ইমেইল</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fa fa-envelope" style="color: #2b9348;"></i>
+                                        </span>
+                                        <input type="email" name="email" class="form-control border-start-0" placeholder="আপনার ইমেইল দিন" required>
+                                    </div>
+                                </div>
+                                
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label class="form-label">পাসওয়ার্ড</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fa fa-lock" style="color: #2b9348;"></i>
+                                        </span>
+                                        <input type="password" name="password" class="form-control border-start-0" placeholder="আপনার পাসওয়ার্ড দিন" required>
+                                    </div>
+                                </div>
+                                
+                                <!-- Remember & Forgot -->
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="#" class="small text-decoration-none" style="color: #2b9348;">পাসওয়ার্ড ভুলে গেছেন?</a>
+                                </div>
+                                
+                                <!-- Submit -->
+                                <button type="submit" class="btn w-100 py-2 mb-3 fw-bold" style="background-color: #2b9348; color: white;">
+                                    প্রবেশ করুন
+                                </button>
+                                
+                                <!-- Register Link -->
+                                <div class="text-center small mt-4">
+                                    এখনো অ্যাকাউন্ট নেই? 
+                                    <a href="{% url "registerFunction" %}" class="text-decoration-none fw-bold" style="color: #2b9348;">সাইন আপ করুন</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- হিরো সেকশন -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">ফসলের রোগ সমূহ</h1>
+            <p class="lead">সঠিক সময়ে সঠিক ভাবে রোগ নির্ণয় ও কার্যকর অ্যাকশন নিন</p>
+            
+            <div class="search-box">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="ফসলের নাম খুঁজুন...">
+                    <button class="btn btn-light" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফসলের তালিকা -->
+    <section class="crop-list py-5">
+        <div class="container">
+            <div class="row">
+                {% for disease in all_disease %}
+                <div class="col-md-4">
+                    <div class="card crop-card">
+                        <img src="{{disease.image.url }}" class="card-img-top crop-img" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ disease.disease_name }}</h5>
+                            <p class="card-text">{{disease.description}}</p>
+                            <a href="{% url "disease_info_details" disease.slug %}" class="btn btn-success">বিস্তারিত জানুন</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-success">কৃষি কর্মকর্তার থেকে জানুন </button>
+            </div>
+        </div>
+    </section>
+   
+{% endblock content %}

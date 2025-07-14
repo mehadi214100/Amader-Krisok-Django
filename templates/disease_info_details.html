@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <!-- Disease Header -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h2 class="h4 mb-1">{{disease_details.disease_name}}</h2>
+      <p class="mb-0"><small>ফসল: {{disease_details.crop_name}}</small></p>
+    </div>
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3">
+          <img src="{{disease_details.image.url}}" class="img-fluid rounded" alt="রোগের ছবি">
+        </div>
+        <div class="col-md-8">
+            <h3 class="h5 mb-2">সার-সংক্ষেপ</h3>
+          <div class="alert alert-light border">
+            <p class="mb-0">{{disease_details.description}}</p>
+          </div>
+          <h3 class="h5 mb-2">রোগের কারণ</h3>
+            <div class="alert alert-light border">
+                <p class="mb-0">{{disease_details.causes}}</p>
+          </div>
+          {% if disease_details.is_major %}
+            <span class="badge bg-danger">প্রধান রোগ</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Symptoms -->
+  <div class="card mb-3 border-primary">
+    <div class="card-header bg-light text-primary">
+      <h3 class="h5 mb-0">রোগের লক্ষণ</h3>
+    </div>
+    <div class="card-body">
+      <p>{{disease_details.symptoms}}</p>
+    </div>
+  </div>
+
+  <!-- Treatment -->
+  <div class="card mb-3 border-success">
+    <div class="card-header bg-light text-success">
+      <h3 class="h5 mb-0">চিকিৎসা/ব্যবস্থাপনা</h3>
+    </div>
+    <div class="card-body">
+      <p>{{disease_details.treatment | safe }}</p>
+    </div>
+  </div>
+
+  <!-- Prevention -->
+  <div class="card border-info mb-5">
+    <div class="card-header bg-light text-info">
+      <h3 class="h5 mb-0">প্রতিকার</h3>
+    </div>
+    <div class="card-body">
+      <p>{{disease_details.prevention}}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

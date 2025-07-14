@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    font-family: "Noto Serif Bengali", serif;
+
+}
+:root {
+    --primary-green: #2b9348;
+    --dark-green: #1b5e20;
+    --light-green: #e8f5e9;
+}
+
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.navbar {
+    background-color: var(--primary-green);
+}
+
+.cart-header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #e6f4ea;
+}
+
+.product-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.summary-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+
+.btn-outline-primary {
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.text-green {
+    color: var(--primary-green);
+}
+
+.empty-cart {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+}
+.payment-methods img{
+    width: 80%;
+}
