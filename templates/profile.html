@@ -7,13 +7,21 @@
             <div class="col-md-4">
                 <div class="profile-sidebar">
                     <div class="profile-header">
-                        {% if userinfo.userprofile.image %}
+
+                        {% if user.officer_profile.profile_picture %}
+                            <img src="{{officer_profile.profile_picture.url}}" alt="Profile" class="profile-avatar">
+                        {% elif userinfo.userprofile.image %}
                             <img src="{{profile.image.url}}" alt="Profile" class="profile-avatar">
                         {% else %}
                         <img src="https://img.favpng.com/17/24/10/computer-icons-user-profile-male-avatar-png-favpng-jhVtWQQbMdbcNCahLZztCF5wk.jpg" alt="Profile" class="profile-avatar">
                         {% endif %}
                         <h5 class="profile-name">{{userinfo.first_name}}</h5>
-                        <p class="profile-role">কৃষক</p>
+                        {% if user.is_officer %}
+                         <p class="profile-role">কৃষি কর্মকর্তা</p>
+                        {% else %}
+                         <p class="profile-role">কৃষক</p>
+                        {% endif %}
+                       
                     </div>
                     
                     <ul class="sidebar-menu">
@@ -102,7 +110,7 @@
 
     <div class="info-item">
         <div class="info-label">মোট মিটিং</div>
-        <div>{{ user.officer_profile.total_meetings|default:"তথ্য সেট করুন" }}</div>
+        <div>{{ user.officer_profile.total_meetings|default:"0" }}</div>
     </div>
 
     <div class="info-item">
@@ -111,7 +119,7 @@
             {% if user.officer_profile.average_rating %}
                 {{ user.officer_profile.average_rating|floatformat:1 }}/5
             {% else %}
-                তথ্য সেট করুন
+                0
             {% endif %}
         </div>
     </div>

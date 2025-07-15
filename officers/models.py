@@ -21,19 +21,19 @@ class Officer(models.Model):
 
    
     class Specialization(models.TextChoices):
-        CROP = 'CR', _('Crop Disease Management')
-        IRRIGATION = 'IR', _('Irrigation Technology')
-        ORGANIC = 'OR', _('Organic Farming')
-        SEED = 'SD', _('Seed Technology')
-        PESTICIDE = 'PE', _('Pesticide Management')
-        CLIMATE = 'CL', _('Climate Adaptation')
-        MACHINERY = 'MA', _('Agricultural Machinery')
+        CROP = 'CR', _('ফসল রোগ ব্যবস্থাপনা')
+        IRRIGATION = 'IR', _('সেচ প্রযুক্তি')
+        ORGANIC = 'OR', _('জৈব কৃষি')
+        SEED = 'SD', _('বীজ প্রযুক্তি')
+        PESTICIDE = 'PE', _('কীটনাশক ব্যবস্থাপনা')
+        CLIMATE = 'CL', _('জলবায়ু অভিযোজন')
+        MACHINERY = 'MA', _('কৃষি যন্ত্রপাতি')
 
     
     class AvailableDays(models.TextChoices):
-        SAT_TO_WED = 'SW', _('Saturday-Wednesday')
-        SUN_TO_THU = 'ST', _('Sunday-Thursday')
-        MON_TO_FRI = 'MF', _('Monday-Friday')
+        SAT_TO_WED = 'SW', _('শনিবার - বুধবার')
+        SUN_TO_THU = 'ST', _('রবিবার-বৃহস্পতিবার')
+        MON_TO_FRI = 'MF', _('সোমবার-শুক্রবার')
         FLEXIBLE = 'FL', _('Flexible')
 
    
@@ -70,7 +70,8 @@ class Officer(models.Model):
         verbose_name=_('Graduation Year'),
         validators=[MinValueValidator(1900), MaxValueValidator(2100)],
         blank=True,
-        null=True
+        null=True,
+        default=2000
     )
 
     specialization = models.CharField(
@@ -84,7 +85,8 @@ class Officer(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(50)],
         verbose_name=_('Experience (Years)'),
         blank=True,
-        null=True
+        null=True,
+        default=0
     )
 
     # Workplace Information
@@ -127,10 +129,9 @@ class Officer(models.Model):
         verbose_name=_('Total Meetings Conducted')
     )
 
-    average_rating = models.FloatField(
+    total_ratings = models.FloatField(
         default=0,
-        validators=[MinValueValidator(0), MaxValueValidator(5)],
-        verbose_name=_('Average Rating')
+        verbose_name=_('Total Rating')
     )
 
    
@@ -147,17 +148,14 @@ class Officer(models.Model):
         verbose_name=_('Profile Picture')
     )
 
-    is_verified = models.BooleanField(
+    is_available= models.BooleanField(
         default=False,
-        verbose_name=_('Verified Officer')
+        verbose_name=_('Availabilty')
     )
 
     class Meta:
         verbose_name = _('Agriculture Officer')
         verbose_name_plural = _('Agriculture Officers')
-
-    def __str__(self):
-        return f"{self.user.get_full_name()} - {self.designation} ({self.workplace})"
 
     def get_education_info(self):
         return f"{self.get_education_display()} ({self.graduation_year}) from {self.institution}"
@@ -171,3 +169,29 @@ class Officer(models.Model):
         elif self.experience >= 5:
             return _('Mid-level')
         return _('Junior')
+    
+    def get_rating(self):
+        if self.total_meetings and self.total_meetings > 0:
+            return round(self.total_ratings / self.total_meetings, 2)
+        return 0
+    
+    def __str__(self):
+        return self.user.email
+    
+statusChoice = (
+    ('pending','Pending'),
+    ('approved','Approved'),
+    ('completed','Completed'),
+)
+
+class OfficerBook(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="officerbooking")
+    officer = models.ForeignKey(Officer,on_delete=models.CASCADE,related_name="bookinglist")
+    phone_number = models.CharField(max_length=15)
+    date = models.DateField()
+    time = models.TimeField()
+    discussion_content = models.TextField()
+    status = models.CharField(max_length=150,choices=statusChoice,default="pending")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_cancel = models.BooleanField(default=False)

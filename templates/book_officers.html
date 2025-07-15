@@ -5,7 +5,7 @@
     <div class="container py-5">
         <div class="text-center mb-5">
             <h3 class="display-6 fw-bold text-success mb-3">
-                <i class="bi bi-people-fill"></i> কৃষি বিশেষজ্ঞদের সাথে সরাসরি পরামর্শ
+                <i class="fa fa-people-fill"></i> কৃষি বিশেষজ্ঞদের সাথে সরাসরি পরামর্শ
             </h3>
             <p class="lead text-muted">আপনার ফসল ও কৃষি সংক্রান্ত যেকোন সমস্যার সমাধান পেতে বিশেষজ্ঞের সাথে সাক্ষাৎ করুন</p>
             <div class="d-flex justify-content-center">
@@ -14,173 +14,309 @@
         </div>
 
         <div class="row g-4">
-            <!-- Officer 1 -->
+            {% for officer in officers %}
             <div class="col-md-6 col-lg-4">
                 <div class="card border-0 shadow-lg h-100 overflow-hidden" style="border-radius: 15px;">
                     <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="অফিসার" style="height: 200px; object-fit: cover;">
+                        {% if officer.profile_picture %}
+                         <img src="{{officer.profile_picture.url}}" class="card-img-top" alt="অফিসার" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="https://img.favpng.com/17/24/10/computer-icons-user-profile-male-avatar-png-favpng-jhVtWQQbMdbcNCahLZztCF5wk.jpg" class="card-img-top" alt="অফিসার" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                       
                         <div class="position-absolute top-0 end-0 bg-success text-white px-3 py-1 rounded-bl" style="font-size: 0.9rem;">
-                            <i class="bi bi-star-fill"></i> ৪.৯/৫
+                            {% if officer.get_rating %}
+                                <i class="fa fa-star-fill"></i> {{ officer.get_rating}}/৫
+                            {% else %}
+                                <i class="fa fa-star-fill"></i> {{ officer.get_rating}}/0
+                            {% endif %}
+                            
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-                            <h4 class="card-title mb-0 text-success">ড. রহিমুল ইসলাম</h4>
-                            <span class="badge bg-warning text-dark ms-2"><i class="bi bi-award"></i> বিশেষজ্ঞ</span>
+                            <h4 class="card-title mb-0 text-success">{{officer.user.first_name}}</h4>
+                            
                         </div>
                         
                         <div class="mb-3">
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-egg-fill text-success"></i> ফসল রোগ</span>
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-droplet-fill text-primary"></i> সেচ</span>
-                            <span class="badge bg-light text-dark"><i class="bi bi-tree-fill text-danger"></i> কীটনাশক</span>
+                            <span class="badge bg-danger text-light me-1"><i class="fa fa-egg-fill text-success"></i> {{officer.get_specialization_display}}</span>
                         </div>
                         
                         <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-briefcase-fill text-success"></i> <strong>অভিজ্ঞতা:</strong> ১২ বছর</li>
-                            <li class="mb-2"><i class="bi bi-calendar-check-fill text-success"></i> <strong>উপলব্ধ দিন:</strong> শনি-বুধ</li>
-                            <li><i class="bi bi-clock-fill text-success"></i> <strong>সময়:</strong> সকাল ৯টা - বিকাল ৩টা</li>
+                            <li class="mb-2"><i class="fa fa-briefcase-fill text-success"></i> <strong>অভিজ্ঞতা:</strong> {{officer.experience}} বছর</li>
+                            <li class="mb-2"><i class="fa fa-calendar-check-fill text-success"></i> <strong>উপলব্ধ দিন: </strong>{{officer.get_days_available_display}}</li>
+                            <li><i class="fa fa-clock-fill text-success"></i> <strong>সময়:</strong> {{officer.time_available}}</li>
                         </ul>
                     </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <button class="btn btn-success rounded-pill w-100 py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#bookingModal">
-                            <i class="bi bi-calendar-plus"></i> অ্যাপয়েন্টমেন্ট বুক করুন
-                        </button>
-                    </div>
+                        <div class="card-footer bg-transparent border-0 pb-3">
+                        <div class="d-flex justify-content-between gap-2">
+                            <a class="btn btn-outline-success rounded-pill flex-fill py-2 fw-bold " data-bs-toggle="modal" data-bs-target="#profileModal{{officer.id}}">
+                                <i class="fa fa-user"></i> প্রোফাইল
+                            </a>
+                            {% if user.is_authenticated  %}
+                                <a class="btn btn-success rounded-pill flex-fill py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#bookingModal{{officer.id}}">
+                                    <i class="fa fa-calendar"></i>  বুক করুন
+                                </a>
+                            {% else %}
+                                <a class="btn btn-success rounded-pill flex-fill py-2 fw-bold" href = "{% url "loginFunction" %}" >
+                                        <i class="fa fa-sign-in"></i>  লগিন করুন
+                                    </a>
+                            {% endif %}
+
+                        </div>
+                        </div>
                 </div>
             </div>
 
-            <!-- Officer 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card border-0 shadow-lg h-100 overflow-hidden" style="border-radius: 15px;">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="অফিসার" style="height: 200px; object-fit: cover;">
-                        <div class="position-absolute top-0 end-0 bg-success text-white px-3 py-1 rounded-bl" style="font-size: 0.9rem;">
-                            <i class="bi bi-star-fill"></i> ৪.৮/৫
+
+            <div class="modal fade" id="profileModal{{officer.id}}" tafandex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content border-0 shadow rounded-3">
+                        <div class="modal-header bg-success text-white border-0 rounded-top-3">
+                            <h5 class="modal-title">
+                                <i class="fa fa-person-badge me-2"></i>Officer Profile
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <h4 class="card-title mb-0 text-success">নাসিমা আক্তার</h4>
-                            <span class="badge bg-info text-white ms-2"><i class="bi bi-lightbulb-fill"></i> উদ্ভাবক</span>
+                        <div class="modal-body p-4">
+                            <div class="row g-4">
+                                
+                                <div class="col-md-4 text-center">
+                                    {% if officer.profile_picture %}
+                                        <img src="{{ officer.profile_picture.url }}" 
+                                            class="img-fluid rounded-circle mb-3 border border-3 border-light" 
+                                            style="width: 180px; height: 180px; object-fit: cover;"
+                                            alt="Profile Picture">
+                                    {% else %}
+                                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-light mb-3 border border-3 border-light" 
+                                            style="width: 180px; height: 180px;">
+                                            <i class="fa fa-person-fill text-muted" style="font-size: 5rem;"></i>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    <div class="mb-3">
+                                        {% if officer.is_available %}
+                                            <span class="badge bg-success py-2 px-3 rounded-pill">
+                                                <i class="fa fa-check-circle-fill me-1"></i> Available
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-secondary py-2 px-3 rounded-pill">
+                                                <i class="fa fa-x-circle-fill me-1"></i> Unavailable
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="text-warning">
+                                            <span class="ms-2 text-dark">{{ officer.get_rating|floatformat:1 }}/5.0</span>
+                                        </div>
+                                        <small class="text-muted">{{ officer.total_meetings }} meetings</small>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-md-8">
+                                    <h3 class="mb-3 text-success">{{ officer.user.get_full_name }}</h3>
+                                    
+                                    
+                                    <div class="card mb-3 border-0 shadow-sm">
+                                        <div class="card-header bg-light bg-opacity-50">
+                                            <h6 class="mb-0 fw-bold">
+                                                <i class="fa fa-info-circle-fill text-success me-2"></i>Basic Information
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Designation:</p>
+                                                    <p class="text-muted">{{ officer.designation|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Workplace:</p>
+                                                    <p class="text-muted">{{ officer.workplace|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Date of Birth:</p>
+                                                    <p class="text-muted">{{ officer.date_of_birth|date:"d F Y"|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Experience:</p>
+                                                    <p class="text-muted">{{ officer.experience }} years ({{ officer.get_experience_level }})</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Education Card -->
+                                    <div class="card mb-3 border-0 shadow-sm">
+                                        <div class="card-header bg-light bg-opacity-50">
+                                            <h6 class="mb-0 fw-bold">
+                                                <i class="fa fa-mortarboard-fill text-success me-2"></i>Education & Expertise
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Education:</p>
+                                                    <p class="text-muted">{{ officer.get_education_display|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Institution:</p>
+                                                    <p class="text-muted">{{ officer.institution|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Graduation Year:</p>
+                                                    <p class="text-muted">{{ officer.graduation_year|default:"Not specified" }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Specialization:</p>
+                                                    <p class="text-muted">{{ officer.get_specialization_display|default:"Not specified" }}</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="card mb-3 border-0 shadow-sm">
+                                        <div class="card-header bg-light bg-opacity-50">
+                                            <h6 class="mb-0 fw-bold">
+                                                <i class="fa fa-calendar-check-fill text-success me-2"></i>Availafality
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Working Days:</p>
+                                                    <p class="text-muted">{{ officer.get_days_available_display }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Working Hours:</p>
+                                                    <p class="text-muted">{{ officer.time_available }}</p>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <p class="mb-1 fw-semibold">Joining Date:</p>
+                                                    <p class="text-muted">{{ officer.joining_date|date:"d F Y"|default:"Not specified" }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if officer.bio %}
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-header bg-light bg-opacity-50">
+                                            <h6 class="mb-0 fw-bold">
+                                                <i class="fa fa-person-lines-fill text-success me-2"></i>About
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="mb-0 text-muted">{{ officer.bio }}</p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="mb-3">
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-recycle text-success"></i> জৈব কৃষি</span>
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-flower1 text-danger"></i> বীজ</span>
-                            <span class="badge bg-light text-dark"><i class="bi bi-umbrella-fill text-warning"></i> জলবায়ু</span>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">
+                                <i class="fa fa-envelope-fill me-1"></i> বুক করুন
+                            </button>
                         </div>
-                        
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-briefcase-fill text-success"></i> <strong>অভিজ্ঞতা:</strong> ৮ বছর</li>
-                            <li class="mb-2"><i class="bi bi-calendar-check-fill text-success"></i> <strong>উপলব্ধ দিন:</strong> রবি-বৃহস্পতি</li>
-                            <li><i class="bi bi-clock-fill text-success"></i> <strong>সময়:</strong> সকাল ১০টা - বিকাল ৪টা</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <button class="btn btn-success rounded-pill w-100 py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#bookingModal">
-                            <i class="bi bi-calendar-plus"></i> অ্যাপয়েন্টমেন্ট বুক করুন
-                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Officer 3 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card border-0 shadow-lg h-100 overflow-hidden" style="border-radius: 15px;">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="অফিসার" style="height: 200px; object-fit: cover;">
-                        <div class="position-absolute top-0 end-0 bg-success text-white px-3 py-1 rounded-bl" style="font-size: 0.9rem;">
-                            <i class="bi bi-star-fill"></i> ৪.৭/৫
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <h4 class="card-title mb-0 text-success">মো. সাজ্জাদ হোসেন</h4>
-                            <span class="badge bg-primary text-white ms-2"><i class="bi bi-gear-fill"></i> প্রযুক্তিবিদ</span>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-droplet-half text-primary"></i> সেচ প্রযুক্তি</span>
-                            <span class="badge bg-light text-dark me-1"><i class="bi bi-tools text-secondary"></i> যন্ত্রপাতি</span>
-                            <span class="badge bg-light text-dark"><i class="bi bi-graph-up text-info"></i> উৎপাদন</span>
-                        </div>
-                        
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-briefcase-fill text-success"></i> <strong>অভিজ্ঞতা:</strong> ১৫ বছর</li>
-                            <li class="mb-2"><i class="bi bi-calendar-check-fill text-success"></i> <strong>উপলব্ধ দিন:</strong> সোম-শুক্র</li>
-                            <li><i class="bi bi-clock-fill text-success"></i> <strong>সময়:</strong> দুপুর ১২টা - সন্ধ্যা ৬টা</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <button class="btn btn-success rounded-pill w-100 py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#bookingModal">
-                            <i class="bi bi-calendar-plus"></i> অ্যাপয়েন্টমেন্ট বুক করুন
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             
-
-        </div>
-    </div>
-
-    <!-- Booking Modal -->
-    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+                <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal{{officer.id}}" tafandex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow" style="border-radius: 15px;">
                 <div class="modal-header bg-success text-white border-0" style="border-radius: 15px 15px 0 0;">
-                    <h5 class="modal-title"><i class="bi bi-calendar2-check"></i> পরামর্শের সময় নির্ধারণ</h5>
+                    <h5 class="modal-title"><i class="fa fa-calendar2-check"></i> পরামর্শের সময় নির্ধারণ</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <form>
+                    <form method = 'post' action = "{% url "book_officers_by_user" officer.id %}">
+                        {% csrf_token %}
                         <div class="mb-3">
                             <label class="form-label fw-bold">আপনার নাম</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-person-fill text-success"></i></span>
-                                <input type="text" class="form-control" placeholder="পূর্ণ নাম লিখুন" required>
+                                <span class="input-group-text bg-light"><i class="fa fa-person text-success"></i></span>
+                                <input name="fullname" type="text"  class="form-control" placeholder="পূর্ণ নাম লিখুন" required value = "{{request.user.first_name}}">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">মোবাইল নম্বর</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-phone-fill text-success"></i></span>
-                                <input type="tel" class="form-control" placeholder="01XXXXXXXXX" required>
+                                <span class="input-group-text bg-light"><i class="fa fa-phone text-success"></i></span>
+                                <input name="phone_number" type="tel" class="form-control" placeholder="01XXXXXXXXX" value="{{request.user.phone_number}}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">তারিখ</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-light"><i class="bi bi-calendar-date-fill text-success"></i></span>
-                                    <input type="date" class="form-control" required>
+                                    <span class="input-group-text bg-light"><i class="fa fa-calendar text-success"></i></span>
+                                    <input name="date" type="date" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">সময়</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-light"><i class="bi bi-clock-fill text-success"></i></span>
-                                    <select class="form-select" required>
-                                        <option selected disabled>সময় নির্বাচন করুন</option>
-                                        <option>সকাল ৯:০০ - ১০:০০</option>
-                                        <option>সকাল ১০:০০ - ১১:০০</option>
-                                        <option>সকাল ১১:০০ - ১২:০০</option>
-                                        <option>দুপুর ১২:০০ - ১:০০</option>
-                                    </select>
+                                    <span class="input-group-text bg-light"><i class="fa fa-clock text-success"></i></span>
+                                     <input name="time" type="time" class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">আলোচনার বিষয়</label>
-                            <textarea class="form-control" rows="3" placeholder="আপনি কোন বিষয়ে পরামর্শ চান?"></textarea>
+                            <textarea  name= "discussion_content" class="form-control" rows="3" placeholder="আপনি কোন বিষয়ে পরামর্শ চান?"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success w-100 py-2 fw-bold rounded-pill">
-                            <i class="bi bi-check-circle-fill"></i> বুকিং নিশ্চিত করুন
+                            <i class="fa fa-check-circle-fill"></i> বুকিং নিশ্চিত করুন
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header {% if message.tags == 'error' %}bg-danger{% else %}bg-{{ message.tags }}{% endif %} text-white">
+                    <strong class="me-auto">
+                        {% if message.tags == 'error' %}
+                            Error
+                        {% elif message.tags == 'success' %}
+                            Success
+                        {% elif message.tags == 'warning' %}
+                            Warning
+                        {% else %}
+                            Message
+                        {% endif %}
+                    </strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
 
 {% endblock content %}

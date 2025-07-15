@@ -59,7 +59,7 @@ class OfficerProfileForm(forms.ModelForm):
             'nid_number', 'date_of_birth', 'education', 'institution',
             'graduation_year', 'specialization', 'experience', 'workplace',
             'designation', 'joining_date', 'days_available',
-            'time_available', 'bio', 'profile_picture'
+            'time_available', 'bio', 'profile_picture','is_available'
         ]
         widgets = {
             'nid_number': forms.TextInput(attrs={'class': 'form-control'}),
