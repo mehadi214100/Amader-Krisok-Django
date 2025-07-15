@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    font-family: "Noto Serif Bengali", serif;
+
+}
+#services{
+    background-color: #e6f4ea;
+}
+#services h2{
+    color: black;
+    font-weight: bold;
+    padding: 50px 0px  0px;
+
+}
+
+#services h2{
+    color: black;
+    font-weight: bold;
+    padding: 50px 0px  0px;
+
+}
+
+#services img{
+    width: 100%;
+    height: 200px;
+}
+#services .card{
+    border: 0px;
+}
+
+#services a{
+    text-decoration: none;
+}
+
+nav .navbar-brand {
+    font-size: 1.2rem !important;
+}
+.navbar-nav .nav-link{
+    font-size: 1.1rem  !important;
+}
+.navbar-toggler {
+  border-color: white;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22' /%3E%3C/svg%3E");
+}
+
+.navbar-nav .nav-link:hover {
+  color: #FFFF3F !important;
+}
+
+  .carousel-item {
+    position: relative;
+  }
+
+  .carousel-item img {
+    height: 500px; /* Adjust as needed */
+    object-fit: cover;
+  }
+
+  .carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 1;
+  }
+
+  .carousel-caption {
+    z-index: 2;
+    position: absolute;
+    bottom: 20%;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+  }
+
+  .carousel-caption h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .carousel-caption p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-item img {
+      height: 250px;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1.3rem;
+    }
+
+    .carousel-caption p {
+      font-size: 0.9rem;
+    }
+
+    .carousel-caption {
+      bottom: 10%;
+    }
+  }
+
+  .partner-logo {
+    max-height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    filter: grayscale(100%);
+  }
+
+  .partner-logo:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+  }
+
+
+#success-stories .card-img-top {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+#success-stories a {
+  text-decoration: none;
+}
+
+#expert-opinion {
+  background-color: #e6f4ea;
+}
+#expert-opinion h2 {
+  color: #2b9348;
+}
+#intro-video h2 {
+  color: #2b9348;
+}
+#faq h2 {
+  color: #2b9348;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+#contact input,
+#contact textarea {
+  border-radius: 8px;
+}
+
+#contact h2 {
+  color: #2b9348;
+}
+footer a:hover {
+  color: #ffff3f !important;
+}

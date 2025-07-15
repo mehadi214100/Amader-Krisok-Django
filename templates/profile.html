@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %} 
+
     <div class="container profile-container">
         <div class="row">
             <!-- Sidebar Menu -->
@@ -44,121 +46,119 @@
                         <h4 class="section-title"><i class="fas fa-home"></i> Dashboard</h4>
                         
                                 
-        <div class="container mt-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0">
-                        <i class="fa fa-calendar-check me-2"></i>আমার বুকিং তালিকা
-                    </h5>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-nowrap">ক্রমিক</th>
-                                    {% if user.is_officer %}
-                                        <th class="text-nowrap">কৃষক</th>
-                                    {% else %}
-                                        <th class="text-nowrap">কৃষি কর্মকর্তা</th>
-                                    {% endif %}
-                                    <th class="text-nowrap">তারিখ</th>
-                                    <th class="text-nowrap">সময়</th>
-                                    <th class="text-nowrap">বিষয়বস্তু</th>
-                                    <th class="text-nowrap">স্ট্যাটাস</th>
-                                    <th class="text-nowrap">অ্যাকশন</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for booking in bookings %}
-                                <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>
-                                        {% if user.is_officer %}
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <div class="fw-semibold">{{ booking.user.first_name }}</div>
-                                                <small class="text-muted">{{ booking.user.phone_number }}</small>
-                                            </div>
+                            <div class="container mt-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">
+                                            <i class="fa fa-calendar-check me-2"></i>আমার বুকিং তালিকা
+                                        </h5>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th class="text-nowrap">ক্রমিক</th>
+                                                        {% if user.is_officer %}
+                                                            <th class="text-nowrap">কৃষক</th>
+                                                        {% else %}
+                                                            <th class="text-nowrap">কৃষি কর্মকর্তা</th>
+                                                        {% endif %}
+                                                        <th class="text-nowrap">তারিখ</th>
+                                                        <th class="text-nowrap">সময়</th>
+                                                        <th class="text-nowrap">বিষয়বস্তু</th>
+                                                        <th class="text-nowrap">স্ট্যাটাস</th>
+                                                        <th class="text-nowrap">অ্যাকশন</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for booking in bookings %}
+                                                    <tr>
+                                                        <td>{{ forloop.counter }}</td>
+                                                        <td>
+                                                            {% if user.is_officer %}
+                                                            <div class="d-flex align-items-center">
+                                                                <div>
+                                                                    <div class="fw-semibold">{{ booking.user.first_name }}</div>
+                                                                    <small class="text-muted">{{ booking.user.phone_number }}</small>
+                                                                </div>
+                                                            </div>
+                                                            {% else %}
+                                                            <div class="d-flex align-items-center">
+                                                                <div>
+                                                                    <div class="fw-semibold">{{ booking.officer.user.first_name }}</div>
+                                                                    <small class="text-muted">{{ booking.officer.designation }}</small>
+                                                                </div>
+                                                                </div>
+                                                            {% endif %}
+                                                            
+                                                        </td>
+                                                        <td>{{ booking.date|date:"d/m/Y" }}</td>
+                                                        <td>{{ booking.time|time:"h:i A" }}</td>
+                                                        <td>
+                                                            {% if booking.discussion_content %}
+                                                                <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                                                                    {{ booking.discussion_content }}
+                                                                </span>
+                                                            {% else %}
+                                                                <span class="text-muted">নির্ধারিত হয়নি</span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            {% if booking.status == 'approved' %}
+                                                                <span class="badge bg-success">
+                                                                    <i class="bi bi-check-circle me-1"></i>Approved
+                                                                </span>
+                                                            {% elif booking.status == 'pending' %}
+                                                                <span class="badge bg-warning text-dark">
+                                                                    <i class="bi bi-hourglass me-1"></i>Pending
+                                                                </span>
+                                                            {% elif booking.status == 'completed' %}
+                                                                <span class="badge bg-primary">
+                                                                    <i class="bi bi-check2-all me-1"></i>Completed
+                                                                </span>
+                                                            {% elif booking.status == 'cancel' %}
+                                                                <span class="badge bg-danger">
+                                                                    <i class="bi bi-x-circle me-1"></i>Cancel
+                                                                </span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <div class="">
+                                                                {% if booking.status == 'approved' %}
+                                                                <a class="badge bg-warning text-decoration-none" href="{{booking.meeting_link}}" target="_blank" >Link</a>
+                                                                {% elif  booking.status == 'cancel' %}
+                                                                    <a class="badge bg-info text-decoration-none" >Not Available</a>
+                                                                {% else %}
+                                                                    {% if user.is_officer %}
+                                                                        <div class="d-flex gap-2">
+                                                                        <a href="{% url "approve_booking" booking.id %}" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i></a>
+                                                                        <a href="{% url "cancel_booking" booking.id %}" class="btn btn-sm btn-outline-danger"><i class="fa fa-x"></i></a>
+                                                                        </div>
+                                                                    {% else %}
+                                                                        <a href="{% url "cancel_booking" booking.id %}" class="btn btn-sm btn-outline-danger">Cancel</a>
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                            
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    {% empty %}
+                                                    <tr>
+                                                        <td colspan="7" class="text-center py-4 text-muted">
+                                                            <i class="bi bi-calendar-x fs-4 d-block mb-2"></i>
+                                                            কোনো বুকিং পাওয়া যায়নি
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
                                         </div>
-                                         {% else %}
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <div class="fw-semibold">{{ booking.officer.user.first_name }}</div>
-                                                <small class="text-muted">{{ booking.officer.designation }}</small>
-                                            </div>
-                                            </div>
-                                         {% endif %}
-                                        
-                                    </td>
-                                    <td>{{ booking.date|date:"d/m/Y" }}</td>
-                                    <td>{{ booking.time|time:"h:i A" }}</td>
-                                    <td>
-                                        {% if booking.discussion_content %}
-                                            <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                                                {{ booking.discussion_content }}
-                                            </span>
-                                        {% else %}
-                                            <span class="text-muted">নির্ধারিত হয়নি</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if booking.status == 'approved' %}
-                                            <span class="badge bg-success">
-                                                <i class="bi bi-check-circle me-1"></i>Approved
-                                            </span>
-                                        {% elif booking.status == 'pending' %}
-                                            <span class="badge bg-warning text-dark">
-                                                <i class="bi bi-hourglass me-1"></i>Pending
-                                            </span>
-                                        {% elif booking.status == 'completed' %}
-                                            <span class="badge bg-primary">
-                                                <i class="bi bi-check2-all me-1"></i>Completed
-                                            </span>
-                                        {% elif booking.status == 'cancel' %}
-                                            <span class="badge bg-danger">
-                                                <i class="bi bi-x-circle me-1"></i>Cancel
-                                            </span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <div class="">
-                                            {% if booking.status == 'approved' %}
-                                               <a class="badge bg-warning text-decoration-none" href="{{booking.meeting_link}}" target="_blank" >Link</a>
-                                            {% elif  booking.status == 'cancel' %}
-                                                <a class="badge bg-info text-decoration-none" >Not Available</a>
-                                            {% else %}
-                                                {% if user.is_officer %}
-                                                    <div class="d-flex gap-2">
-                                                    <a href="{% url "approve_booking" booking.id %}" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i></a>
-                                                    <a href="{% url "cancel_booking" booking.id %}" class="btn btn-sm btn-outline-danger"><i class="fa fa-x"></i></a>
-                                                    </div>
-                                                {% else %}
-                                                    <a href="{% url "cancel_booking" booking.id %}" class="btn btn-sm btn-outline-danger">Cancel</a>
-                                                {% endif %}
-                                            {% endif %}
-                                           
-                                        </div>
-                                    </td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="7" class="text-center py-4 text-muted">
-                                        <i class="bi bi-calendar-x fs-4 d-block mb-2"></i>
-                                        কোনো বুকিং পাওয়া যায়নি
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-
-
-
+                        </div>
 
 
                     
@@ -463,76 +463,43 @@
         </div>
     </div>
 
+    
 
-
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-    {% if messages %}
-        {% for message in messages %}
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header {% if message.tags == 'error' %}bg-danger{% else %}bg-{{ message.tags }}{% endif %} text-white">
-                    <strong class="me-auto">
-                        {% if message.tags == 'error' %}
-                            Error
-                        {% elif message.tags == 'success' %}
-                            Success
-                        {% elif message.tags == 'warning' %}
-                            Warning
-                        {% else %}
-                            Message
-                        {% endif %}
-                    </strong>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ message }}
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-</div>
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle sidebar menu clicks
-            const menuLinks = document.querySelectorAll('.sidebar-menu a');
-            const contentSections = document.querySelectorAll('.content-section');
-            
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all links and sections
-                    menuLinks.forEach(item => item.classList.remove('active'));
-                    contentSections.forEach(section => section.classList.remove('active'));
-                    
-                    // Add active class to clicked link
-                    this.classList.add('active');
-                    
-                    // Show corresponding section
-                    const target = this.getAttribute('data-target');
-                    document.getElementById(target).classList.add('active');
-                });
-            });
-            
-            // Handle buttons that link to sections (like in dashboard)
-            const sectionButtons = document.querySelectorAll('[data-target]');
-            sectionButtons.forEach(button => {
-                if(button.tagName === 'A' || button.tagName === 'BUTTON') {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const target = this.getAttribute('data-target');
-                        
-                        // Remove active class from all links and sections
-                        menuLinks.forEach(item => item.classList.remove('active'));
-                        contentSections.forEach(section => section.classList.remove('active'));
-                        
-                        // Add active class to target link and section
-                        document.querySelector(`.sidebar-menu a[data-target="${target}"]`).classList.add('active');
-                        document.getElementById(target).classList.add('active');
-                    });
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle sidebar menu clicks
+        const menuLinks = document.querySelectorAll('.sidebar-menu a');
+        const contentSections = document.querySelectorAll('.content-section');
+        
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                menuLinks.forEach(item => item.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const target = this.getAttribute('data-target');
+                const targetSection = document.getElementById(target);
+                if(targetSection) {
+                    targetSection.classList.add('active');
                 }
             });
         });
-    </script>
+        
+        // Initialize - show dashboard by default
+        const defaultLink = document.querySelector('.sidebar-menu a[data-target="dashboard"]');
+        if(defaultLink) {
+            defaultLink.classList.add('active');
+            document.getElementById('dashboard').classList.add('active');
+        }
+    });
+</script>
 {% endblock %}
