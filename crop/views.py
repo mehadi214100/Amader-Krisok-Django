@@ -1,9 +1,17 @@
 from django.shortcuts import render,HttpResponse
 from .models import category,CropVarity,DiseaseInfo
-
+from django.db.models import Q
 
 def crop_info(request):
     crops = category.objects.all()
+
+    searchItem = request.GET.get('cropsName','')
+    if searchItem:
+        crops = category.objects.all().filter(
+            Q(category_name__icontains = searchItem) | 
+            Q(description__icontains = searchItem)
+        )
+
     context = {
         "crops":crops,
     }
@@ -31,6 +39,13 @@ def all_crops(request,crop_category,varity_slug=None):
 
 def disease_info(request):
     all_disease = DiseaseInfo.objects.all()
+    
+    searchItem = request.GET.get('diseaseName','')
+    if searchItem:
+        all_disease = DiseaseInfo.objects.all().filter(
+            Q(disease_name__icontains = searchItem) | 
+            Q(description__icontains = searchItem)
+        )
     context = {
         "all_disease":all_disease,
     }

@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from .models import Officer,OfficerBook
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import uuid
+
 
 def officers(request):
     officers = Officer.objects.all().filter(is_available = True)
@@ -31,5 +34,28 @@ def book_officer(request,officer_id):
 
         return redirect('book_officers')
     return redirect('book_officers')
+
+def approve_booking(request,booking_id):
+    booking = OfficerBook.objects.get(id=booking_id)
+    if booking.status == "cancel":
+        messages.warning(request,"Already cancel !!!")
+        return redirect('userProfile')
+    booking.status = "approved"
+    booking.meeting_link = f"https://meet.jit.si/{uuid.uuid4().hex}"
+    booking.save()
+    messages.success(request,"Approved Successfully")
+    return redirect('userProfile')
+
+
+def cancel_booking(request,booking_id):
+    booking = OfficerBook.objects.get(id=booking_id)
+    if booking.status == "approved":
+        messages.warning(request,"Already Approved !!!")
+        return redirect('userProfile')
+    booking.status = "cancel"
+    booking.save()
+    messages.warning(request,"Cancel Successfully !!!")
+    return redirect('userProfile')
+
 
 

@@ -182,6 +182,7 @@ statusChoice = (
     ('pending','Pending'),
     ('approved','Approved'),
     ('completed','Completed'),
+    ('cancel','Cancel'),
 )
 
 class OfficerBook(models.Model):
@@ -194,4 +195,4 @@ class OfficerBook(models.Model):
     status = models.CharField(max_length=150,choices=statusChoice,default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_cancel = models.BooleanField(default=False)
+    meeting_link = models.URLField(blank=True,null=True)

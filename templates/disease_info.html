@@ -8,12 +8,16 @@
             <p class="lead">সঠিক সময়ে সঠিক ভাবে রোগ নির্ণয় ও কার্যকর অ্যাকশন নিন</p>
             
             <div class="search-box">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ফসলের নাম খুঁজুন...">
-                    <button class="btn btn-light" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
+                <form method="get">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="diseaseName" placeholder="ফসলের নাম খুঁজুন...">
+                        <button class="btn btn-light" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                       
+                    </div>
+                 </form>
             </div>
         </div>
     </section>
@@ -37,7 +41,7 @@
             </div>
             
             <div class="text-center mt-4">
-                <button class="btn btn-outline-success">কৃষি কর্মকর্তার থেকে জানুন </button>
+                <a href="{% url "book_officers" %}" class="btn btn-outline-success">কৃষি কর্মকর্তার থেকে জানুন </a>
             </div>
         </div>
     </section>

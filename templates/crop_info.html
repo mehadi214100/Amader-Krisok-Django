@@ -8,12 +8,14 @@
             <p class="lead">প্রাচীন কৃষি ঐতিহ্য ও আধুনিক চাষ পদ্ধতির সমন্বয়</p>
             
             <div class="search-box">
+                <form method="get">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ফসলের নাম খুঁজুন...">
-                    <button class="btn btn-light" type="button">
+                    <input type="text" class="form-control" placeholder="ফসলের নাম খুঁজুন..." name="cropsName">
+                    <button class="btn btn-light" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
+                </form>
             </div>
         </div>
     </section>
@@ -34,10 +36,6 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-            
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-success">আরও ফসল দেখুন</button>
             </div>
         </div>
     </section>

@@ -7,5 +7,4 @@ urlpatterns = [
     path('disease_info',views.disease_info,name="disease_info"),
     path('disease_info/<slug:disease_name>/',views.disease_info_details,name="disease_info_details"),
     
-    
 ]

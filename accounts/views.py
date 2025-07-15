@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from .models import User,UserProfile
 from django.contrib.auth.decorators import login_required
-from officers.models import Officer
+from officers.models import Officer,OfficerBook
+from django.db.models import Q
 
 def loginFunction(request):
     if request.method == "POST":
@@ -84,10 +85,16 @@ def userProfile(request):
         if userinfo.is_officer:
             officer_form = OfficerProfileForm(instance=officer_profile)
 
+    
+    bookings = OfficerBook.objects.all().filter(Q(user = request.user) | Q(officer = officer_profile))
+
+
+
     return render(request, 'profile.html', {
         'userinfo': userinfo,
         'form': form,
         'officer_form': officer_form,
         'profile': farmerprofile,
-        'officer_profile': officer_profile
+        'officer_profile': officer_profile,
+        "bookings":bookings
     })

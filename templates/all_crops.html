@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% if all_varieties %}
 <div class="container-fluid">
     <div class="row">
         <!-- ধানের জাতের সাইডবার -->
@@ -13,6 +14,7 @@
             <div class="p-3">
                 <input type="text" class="form-control mb-3" placeholder="জাত খুঁজুন...">
             <div class="list-group">
+            
                 {% for varity in all_varieties %}
                 <a href="{% url 'all_crops' crop_category=varity.crop.slug varity_slug=varity.slug %}" 
                 class="list-group-item list-group-item-action {% if crops_info == varity %}active{% endif %}">
@@ -29,6 +31,8 @@
                     </div>
                 </a>
                 {% endfor %}
+            
+                
             </div>
 
             </div>
@@ -168,4 +172,12 @@
         </div>
     </div>
 </div>
+{% else %}
+
+<div  class="text-center d-flex justify-content-center align-items-center flex-column">
+    <img src="https://img.freepik.com/premium-vector/no-data-found-empty-file-folder-concept-design-vector-illustration_620585-1698.jpg?semt=ais_hybrid&w=740" alt="Data not found" width="200" height="300">
+    <h1 class="mb-4">কোনো জাত যুক্ত করা হয় নাই </h1>
+</div>
+
+{% endif %}
 {% endblock %}
