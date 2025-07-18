@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
     path('crops/',include('crop.urls')),
-    path('market',include('market.urls')),
+    path('ecommerce',include('ecommerce.urls')),
     path('',include('accounts.urls')),
     path('book_officers/',include('officers.urls')),
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

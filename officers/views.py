@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Officer,OfficerBook
-
+from ecommerce.models import SellerApplication
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import uuid
@@ -42,7 +42,21 @@ def approve_booking(request,booking_id):
         return redirect('userProfile')
     booking.status = "approved"
     booking.meeting_link = f"https://meet.jit.si/{uuid.uuid4().hex}"
+    
     booking.save()
+    messages.success(request,"Approved Successfully")
+    return redirect('userProfile')
+
+def approve_seller_application(request,application_id):
+    seller = SellerApplication.objects.get(id=application_id)
+    if seller.status == "cancel":
+        messages.warning(request,"Already cancel !!!")
+        return redirect('userProfile')
+    seller.user.is_seller = True
+    seller.status = "approved"
+    seller.approved_by = request.user
+    seller.user.save()
+    seller.save()
     messages.success(request,"Approved Successfully")
     return redirect('userProfile')
 
@@ -54,6 +68,16 @@ def cancel_booking(request,booking_id):
         return redirect('userProfile')
     booking.status = "cancel"
     booking.save()
+    messages.warning(request,"Cancel Successfully !!!")
+    return redirect('userProfile')
+
+def reject_seller_application(request,application_id):
+    seller = SellerApplication.objects.get(id=application_id)
+    if seller.status == "approved":
+        messages.warning(request,"Already Approved !!!")
+        return redirect('userProfile')
+    seller.status = "cancel"
+    seller.delete()
     messages.warning(request,"Cancel Successfully !!!")
     return redirect('userProfile')
 

@@ -5,7 +5,10 @@ from django.contrib.auth import login,logout,authenticate
 from .models import User,UserProfile
 from django.contrib.auth.decorators import login_required
 from officers.models import Officer,OfficerBook
+from ecommerce.models import SellerApplication
 from django.db.models import Q
+from ecommerce.forms import ProductForm
+from ecommerce.models import Product
 
 def loginFunction(request):
     if request.method == "POST":
@@ -67,7 +70,7 @@ def userProfile(request):
 
     form = None
     officer_form = None
-
+    applications = SellerApplication.objects.all().filter(status='pending')
     if request.method == 'POST':
         if userinfo.is_officer:
             officer_form = OfficerProfileForm(request.POST, request.FILES, instance=officer_profile)
@@ -88,13 +91,16 @@ def userProfile(request):
     
     bookings = OfficerBook.objects.all().filter(Q(user = request.user) | Q(officer = officer_profile))
 
-
-
+    Productform = ProductForm()
+    allproducts = Product.objects.all().filter(seller = request.user)
     return render(request, 'profile.html', {
         'userinfo': userinfo,
         'form': form,
         'officer_form': officer_form,
         'profile': farmerprofile,
         'officer_profile': officer_profile,
-        "bookings":bookings
+        "bookings":bookings,
+        'applications':applications,
+        'Productform':Productform,
+        'allproducts':allproducts,
     })

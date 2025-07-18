@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crop',
     'main',
-    'market',
     'ckeditor',
     'accounts',
     'officers',
+    'ecommerce',
+    
 ]
 
 MIDDLEWARE = [

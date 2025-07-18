@@ -220,9 +220,18 @@
                         </div>
                         <div class="modal-footer border-0">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">
-                                <i class="fa fa-envelope-fill me-1"></i> বুক করুন
-                            </button>
+
+                            {% if user.is_authenticated %}
+                                <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bookingModal{{ officer.id }}">
+                                    <i class="fa fa-calendar"></i> বুক করুন
+                                </a>
+                            {% else %}
+                                <a class="btn btn-outline-primary" href="{% url 'loginFunction' %}">
+                                    <i class="fa fa-sign-in"></i> লগইন করুন
+                                </a>
+                            {% endif %}
+
+
                         </div>
                     </div>
                 </div>
