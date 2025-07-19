@@ -55,13 +55,13 @@
               <a class="nav-link text-light" href="{% url "market" %}">বাজার</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="./marketplace.html">শ্রমিক ও যন্ত্রপাতি</a>
+              <a class="nav-link text-light" href="{% url "farmerandmachine" %}">শ্রমিক ও যন্ত্রপাতি</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="#">প্রশিক্ষণ</a>
+              <a class="nav-link text-light" href="{% url "learning" %}">প্রশিক্ষণ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="#">ঋণ আবেদন</a>
+              <a class="nav-link text-light" href="{% url "loan" %}">ঋণ আবেদন</a>
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">

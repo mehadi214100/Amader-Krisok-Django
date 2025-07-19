@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'accounts',
     'officers',
     'ecommerce',
+    'learning',
+    'farmerandmachine',
+    'loan',
     
 ]
 

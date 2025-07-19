@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-success mb-3">কৃষক প্রশিক্ষণ কোর্স</h2>
+            <p class="text-muted fs-5">আধুনিক কৃষি পদ্ধতি শিখুন এবং আপনার ফসলের উৎপাদন বৃদ্ধি করুন</p>
+        </div>
+
+        <!-- Course Cards -->
+        <div class="row g-4">
+            <!-- Course 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1032&q=80" class="card-img-top" alt="জৈব কৃষি" style="height: 180px; object-fit: cover;">
+                        <span class="position-absolute top-0 end-0 bg-success text-white m-2 px-3 py-1 rounded-pill small">বেস্টসেলার</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="text-success fw-semibold">জৈব কৃষি</span>
+                        <h5 class="card-title fw-bold mt-2">জৈব পদ্ধতিতে সবজি চাষ</h5>
+                        <div class="d-flex align-items-center text-muted mb-2">
+                            <i class="far fa-clock me-2 text-success"></i>
+                            <small>৮ সপ্তাহের কোর্স</small>
+                        </div>
+                        <p class="card-text text-muted">জৈব সার ও কীটনাশক ব্যবহার করে কীভাবে নিরাপদ সবজি চাষ করতে হয় তা শিখুন। রাসায়নিক মুক্ত চাষাবাদের সম্পূর্ণ গাইড।</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                        <div>
+                            <del class="text-muted small">১২০০ টাকা</del>
+                            <span class="fw-bold text-success fs-5 ms-2">৮৯৯ টাকা</span>
+                        </div>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-cart-plus me-1"></i> এনরোল
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="ফলের চাষ" style="height: 180px; object-fit: cover;">
+                        <span class="position-absolute top-0 end-0 bg-info text-white m-2 px-3 py-1 rounded-pill small">নতুন</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="text-success fw-semibold">ফলের চাষ</span>
+                        <h5 class="card-title fw-bold mt-2">আম ও লিচুর আধুনিক চাষ পদ্ধতি</h5>
+                        <div class="d-flex align-items-center text-muted mb-2">
+                            <i class="far fa-clock me-2 text-success"></i>
+                            <small>৬ সপ্তাহের কোর্স</small>
+                        </div>
+                        <p class="card-text text-muted">আম ও লিচুর উচ্চ ফলনশীল জাত নির্বাচন, গাছের যত্ন ও রোগবালাই ব্যবস্থাপনা সম্পর্কে সম্পূর্ণ প্রশিক্ষণ।</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                        <div>
+                            <del class="text-muted small">১৫০০ টাকা</del>
+                            <span class="fw-bold text-success fs-5 ms-2">১০৯৯ টাকা</span>
+                        </div>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-cart-plus me-1"></i> এনরোল
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                    <div class="position-relative">
+                        <img src="https://motshoprani.org/wp-content/uploads/2021/02/fish-production-1-1.jpg" class="card-img-top" alt="মাছ চাষ" style="height: 180px; object-fit: cover;">
+                    </div>
+                    <div class="card-body">
+                        <span class="text-success fw-semibold">মৎস্য চাষ</span>
+                        <h5 class="card-title fw-bold mt-2">পুকুরে মাছ চাষের আধুনিক পদ্ধতি</h5>
+                        <div class="d-flex align-items-center text-muted mb-2">
+                            <i class="far fa-clock me-2 text-success"></i>
+                            <small>৪ সপ্তাহের কোর্স</small>
+                        </div>
+                        <p class="card-text text-muted">কার্প, তেলাপিয়া, পাঙ্গাস ও শিং-মাগুর চাষের আধুনিক পদ্ধতি, খাদ্য ব্যবস্থাপনা ও রোগ নিয়ন্ত্রণ সম্পর্কে জানুন।</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="fw-bold text-success fs-5">৯৯৯ টাকা</span>
+                        </div>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-cart-plus me-1"></i> এনরোল
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                    <div class="position-relative">
+                        <img src="https://i.ytimg.com/vi/W3pxln7Itd4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDTo9HSAtuCyWbqfDFPtxcEHPfLvQ" class="card-img-top" alt="হাইড্রোপনিক" style="height: 180px; object-fit: cover;">
+                        <span class="position-absolute top-0 end-0 bg-warning text-dark m-2 px-3 py-1 rounded-pill small">প্রচার</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="text-success fw-semibold">অভিনব কৃষি</span>
+                        <h5 class="card-title fw-bold mt-2">হাইড্রোপনিক পদ্ধতিতে সবজি চাষ</h5>
+                        <div class="d-flex align-items-center text-muted mb-2">
+                            <i class="far fa-clock me-2 text-success"></i>
+                            <small>৫ সপ্তাহের কোর্স</small>
+                        </div>
+                        <p class="card-text text-muted">মাটি ছাড়া পানিতে সবজি চাষের সম্পূর্ণ গাইড। বাড়ির ছাদে বা বারান্দায় কিভাবে হাইড্রোপনিক সিস্টেম তৈরি করবেন।</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                        <div>
+                            <del class="text-muted small">২০০০ টাকা</del>
+                            <span class="fw-bold text-success fs-5 ms-2">১৪৯৯ টাকা</span>
+                        </div>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-cart-plus me-1"></i> এনরোল
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- See All Button -->
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-outline-success px-4 py-2">
+                <i class="fas fa-book-open me-2"></i> সব কোর্স দেখুন
+            </a>
+        </div>
+    </div>
+
+{% endblock content %}

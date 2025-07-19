@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-success mb-3">
+            <i class="fas fa-leaf me-2"></i>কৃষি সহায়তা
+        </h1>
+        <p class="lead text-muted">আপনার কৃষি কাজের জন্য দক্ষ শ্রমিক এবং আধুনিক যন্ত্রপাতি ভাড়া নিন</p>
+    </div>
+
+    <!-- Labor Rental Section -->
+    <div class="card mb-4 border-success border-2 shadow-sm">
+        <div class="card-header bg-success text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="fas fa-users me-2"></i>শ্রমিক ভাড়া
+                </h4>
+                <a href="#" class="btn btn-light btn-sm">
+                    আরো দেখুন <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <div class="card-body text-center">
+                            <img src="https://media.licdn.com/dms/image/v2/D5612AQGIlD5ezOWSUQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1714849405380?e=2147483647&v=beta&t=VkufAPgQV2pkyoZIylUIe_B3-BO70EbXL0y_1VS-eNQ" 
+                                 class="rounded-circle mb-3 border border-success border-3" width="100" height="100" alt="শ্রমিক">
+                            <h5 class="card-title fw-bold">মোঃ রফিকুল ইসলাম</h5>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>বগুড়া
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">দক্ষ</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">১০+ বছর অভিজ্ঞতা</span>
+                            </div>
+                            <p class="card-text">ধান কাটা, বপন, সার দেওয়া এবং ফসল তোলার কাজে দক্ষ</p>
+                            <h5 class="text-success">৩০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-phone-alt me-2"></i>ভাড়া নিন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <div class="card-body text-center">
+                            <img src="https://live.staticflickr.com/1269/1116346785_7cdc1dec4c_b.jpg" 
+                                 class="rounded-circle mb-3 border border-success border-3" width="100" height="100" alt="শ্রমিক">
+                            <h5 class="card-title fw-bold">মোঃ আবুল বাসার</h5>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>গাজীপুর
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">দক্ষ</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">১০+ বছর অভিজ্ঞতা</span>
+                            </div>
+                            <p class="card-text">ফসল তোলার কাজে দক্ষ</p>
+                            <h5 class="text-success">৮০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-phone-alt me-2"></i>ভাড়া নিন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                                <div class="col">
+                    <div class="card h-100 border-success">
+                        <div class="card-body text-center">
+                            <img src="https://media.istockphoto.com/id/172359733/photo/one-indian-asian-people-young-office-worker-horizontal.jpg?s=612x612&w=0&k=20&c=Y32zp4b7qN8WpYcxxHRy0UxBjgy5czcrOGDzBP6SqcY=" 
+                                 class="rounded-circle mb-3 border border-success border-3" width="100" height="100" alt="শ্রমিক">
+                            <h5 class="card-title fw-bold">মোঃ নাহিদ ইসলাম</h5>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>রংপুর
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">দক্ষ</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">১০+ বছর অভিজ্ঞতা</span>
+                            </div>
+                            <p class="card-text">বপন, সার দেওয়া এবং ফসল তোলার কাজে দক্ষ</p>
+                            <h5 class="text-success">৬০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-phone-alt me-2"></i>ভাড়া নিন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add 2 more labor cards here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment Rental Section -->
+    <div class="card border-success border-2 shadow-sm">
+        <div class="card-header bg-success text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="fas fa-tractor me-2"></i>যন্ত্রপাতি ভাড়া
+                </h4>
+                <a href="#" class="btn btn-light btn-sm">
+                    আরো দেখুন <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Equipment Cards (same as before) -->
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNZGbLq2F8L9sttdy0ULyqOrOmRBON9c9CrQ&s" 
+                             class="card-img-top" alt="ট্রাক্টর" style="height: 180px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">ট্রাক্টর ভাড়া</h5>
+                            <p class="text-muted">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>বগুড়া
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">সর্বশেষ মডেল</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">ডিজেল ইঞ্জিন</span>
+                            </div>
+                            <p class="card-text">জমি চাষ, মই দেওয়া এবং অন্যান্য কৃষি কাজের জন্য</p>
+                            <h5 class="text-success">১,৫০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-calendar-alt me-2"></i>বুকিং করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgjKK7c1-ahG5_uVClnLoajPvbFKC2si2DnA&s" 
+                             class="card-img-top" alt="ট্রাক্টর" style="height: 180px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">প্যাডেল থ্রেসার</h5>
+                            <p class="text-muted">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>বগুড়া
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">সর্বশেষ মডেল</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">ডিজেল ইঞ্জিন</span>
+                            </div>
+                            <p class="card-text">জমি চাষ, মই দেওয়া এবং অন্যান্য কৃষি কাজের জন্য</p>
+                            <h5 class="text-success">১,৫০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-calendar-alt me-2"></i>বুকিং করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBmD9QBOUF3CTiMqOit05HQRXMWEkfSNJCFQ&s" 
+                             class="card-img-top" alt="ট্রাক্টর" style="height: 180px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">রাইস ট্রান্সপ্লান্টার</h5>
+                            <p class="text-muted">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>বগুড়া
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">সর্বশেষ মডেল</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">ডিজেল ইঞ্জিন</span>
+                            </div>
+                            <p class="card-text">জমি চাষ, মই দেওয়া এবং অন্যান্য কৃষি কাজের জন্য</p>
+                            <h5 class="text-success">১,৫০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-calendar-alt me-2"></i>বুকিং করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-success">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIOaLxrGO6fF42V9_7EyR5tufOj4zNJ98S7Q&s" 
+                             class="card-img-top" alt="ট্রাক্টর" style="height: 180px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">পাওয়ার টিলার</h5>
+                            <p class="text-muted">
+                                <i class="fas fa-map-marker-alt text-success me-2"></i>বগুড়া
+                            </p>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">সর্বশেষ মডেল</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">ডিজেল ইঞ্জিন</span>
+                            </div>
+                            <p class="card-text">জমি চাষ, মই দেওয়া এবং অন্যান্য কৃষি কাজের জন্য</p>
+                            <h5 class="text-success">১,৫০০ টাকা/দিন</h5>
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-calendar-alt me-2"></i>বুকিং করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

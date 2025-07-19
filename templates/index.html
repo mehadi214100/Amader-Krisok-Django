@@ -52,7 +52,7 @@
           <div class="carousel-caption  d-block">
             <h2>যন্ত্রপাতি ভাড়া ও শ্রমিক বুকিং</h2>
             <p>এখন সহজেই কৃষি কাজে যন্ত্রপাতি ও শ্রমিক ভাড়া করুন।</p>
-            <a href="#" class="btn btn-success">ভাড়া নিন</a>
+            <a href="{% url "farmerandmachine" %}" class="btn btn-success">ভাড়া নিন</a>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
           <div class="carousel-caption  d-block">
             <h2>আপনার ফসল বিক্রি করুন সরাসরি</h2>
             <p>সরাসরি ক্রেতার কাছে বিক্রি করে ন্যায্য দাম নিশ্চিত করুন।</p>
-            <a href="#" class="btn btn-success">বাজারে যান</a>
+            <a href="{% url "market" %}" class="btn btn-success">বাজারে যান</a>
           </div>
         </div>
 
@@ -81,7 +81,7 @@
           <div class="carousel-caption  d-block">
             <h2>কৃষি অফিসার এর সাথে যোগাযোগ করুন</h2>
             <p>কৃষি কর্মকর্তার থেকে উপদেশ নিন</p>
-            <a href="#" class="btn btn-success">এক্সপার্ট এর সাহায্য নিন</a>
+            <a href="{% url "book_officers" %}" class="btn btn-success">এক্সপার্ট এর সাহায্য নিন</a>
           </div>
         </div>
 
@@ -95,7 +95,7 @@
           <div class="carousel-caption  d-block">
             <h2>কৃষি বিষয়ক কোর্স করুন</h2>
             <p>প্রশিক্ষণ এর মাধ্যমে ফসল উতপাদন শিখুন</p>
-            <a href="#" class="btn btn-success">কোর্স করুন</a>
+            <a href="{% url "learning" %}" class="btn btn-success">কোর্স করুন</a>
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
                 <p class="card-text">
                   নিজের উৎপাদিত ফসল অনলাইনে সরাসরি বিক্রি...
                 </p>
-                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+                <a href="{% url "market" %}" class="text-success">বিস্তারিত জানুন</a>
               </div>
             </div>
           </div>
@@ -233,7 +233,7 @@
                 <p class="card-text">
                   কৃষি কাজে প্রয়োজনীয় শ্রমিক ও যন্ত্রপাতি সহজেই ভাড়া...
                 </p>
-                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+                <a href="{% url "farmerandmachine" %}" class="text-success">বিস্তারিত জানুন</a>
               </div>
             </div>
           </div>
@@ -245,7 +245,7 @@
                 <p class="card-text">
                   কৃষির জন্য উপযুক্ত ঋণ ও সহযোগিতা সম্পর্কিত তথ্য...
                 </p>
-                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+                <a href="{% url "loan" %}" class="text-success">বিস্তারিত জানুন</a>
               </div>
             </div>
           </div>
@@ -258,7 +258,7 @@
                   আধুনিক কৃষি পদ্ধতি শেখার জন্য অনলাইন প্রশিক্ষণ ও ভিডিও
                   কোর্স...
                 </p>
-                <a href="#" class="text-success">বিস্তারিত জানুন</a>
+                <a href="{% url "learning" %}" class="text-success">বিস্তারিত জানুন</a>
               </div>
             </div>
           </div>

@@ -11,5 +11,5 @@ urlpatterns = [
     path('increment/<int:product_id>',views.increment,name="increment"),
     path('decrement/<int:product_id>',views.decrement,name="decrement"),
     path('removeItem/<int:product_id>',views.removeItem,name="removeItem"),
-    path('removeCart/>',views.removeCart,name="removeCart"),
+    path('removeCart/',views.removeCart,name="removeCart"),
 ]

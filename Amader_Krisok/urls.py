@@ -26,4 +26,7 @@ urlpatterns = [
     path('ecommerce',include('ecommerce.urls')),
     path('',include('accounts.urls')),
     path('book_officers/',include('officers.urls')),
+    path('learning/',include('learning.urls')),
+    path('farmerandmachine/',include('farmerandmachine.urls')),
+    path('loan/',include('loan.urls')),
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

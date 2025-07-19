@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <!-- Loan Types Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold text-success">
+                <i class="fas fa-seedling me-2"></i>কৃষি ঋণ সেবা
+            </h2>
+            <p class="lead">আপনার চাহিদা অনুযায়ী সঠিক ঋণ নির্বাচন করুন</p>
+        </div>
+
+        <!-- Short Term Loan -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-success shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">স্বল্প মেয়াদী ঋণ</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সর্বোচ্চ ১ লক্ষ টাকা
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>৬ মাস মেয়াদ
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সুদের হার ৭%
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>দ্রুত অনুমোদন
+                        </li>
+                    </ul>
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loanModal">
+                        ঋণ নিন <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Term Loan -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-success shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">মধ্যম মেয়াদী ঋণ</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সর্বোচ্চ ৩ লক্ষ টাকা
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>২ বছর মেয়াদ
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সুদের হার ৮%
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>কৃষি উপকরণ ক্রয়
+                        </li>
+                    </ul>
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loanModal">
+                        ঋণ নিন <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Long Term Loan -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-success shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">দীর্ঘ মেয়াদী ঋণ</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সর্বোচ্চ ৫ লক্ষ টাকা
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>৩ বছর মেয়াদ
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>সুদের হার ৯%
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>যন্ত্রপাতি ক্রয়
+                        </li>
+                    </ul>
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loanModal">
+                        ঋণ নিন <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Information Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>ঋণ সংক্রান্ত তথ্য
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-success">ঋণের শর্তাবলী:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-check text-success me-2"></i>ন্যূনতম ১ একর জমির মালিকানা প্রয়োজন
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check text-success me-2"></i>ন্যূনতম ২ বছর কৃষি কাজের অভিজ্ঞতা
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check text-success me-2"></i>জাতীয় পরিচয়পত্র ও জমির দলিল প্রয়োজন
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-success">প্রয়োজনীয় ডকুমেন্ট:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-file-alt text-success me-2"></i>জাতীয় পরিচয়পত্রের ফটোকপি
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-file-alt text-success me-2"></i>জমির দলিল/চুক্তিপত্র
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-file-alt text-success me-2"></i>২ কপি পাসপোর্ট সাইজ ছবি
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-file-alt text-success me-2"></i>টিন সার্টিফিকেট
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loan Application Modal -->
+<div class="modal fade" id="loanModal" tabindex="-1" aria-labelledby="loanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="loanModalLabel">
+                    <i class="fas fa-hand-holding-usd me-2"></i>কৃষি ঋণ আবেদন
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <h5 class="text-success mb-4">
+                        <i class="fas fa-user-circle me-2"></i>ব্যক্তিগত তথ্য
+                    </h5>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">পূর্ণ নাম</label>
+                            <input type="text" class="form-control" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">মোবাইল নম্বর</label>
+                            <input type="tel" class="form-control" placeholder="01XXXXXXXXX" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">জেলা</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>জেলা নির্বাচন করুন</option>
+                                <option>ঢাকা</option>
+                                <option>বগুড়া</option>
+                                <option>রংপুর</option>
+                                <option>খুলনা</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">উপজেলা</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>উপজেলা নির্বাচন করুন</option>
+                                <option>সদর</option>
+                                <option>শিবগঞ্জ</option>
+                                <option>আদমদীঘি</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">ঠিকানা</label>
+                            <textarea class="form-control" rows="2" placeholder="গ্রাম/মহল্লা, ডাকঘর" required></textarea>
+                        </div>
+                    </div>
+
+                    <h5 class="text-success mb-4">
+                        <i class="fas fa-tractor me-2"></i>কৃষি তথ্য
+                    </h5>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">জমির পরিমাণ (একর)</label>
+                            <input type="number" class="form-control" placeholder="জমির পরিমাণ লিখুন" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">মূল ফসল</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>ফসল নির্বাচন করুন</option>
+                                <option>ধান</option>
+                                <option>গম</option>
+                                <option>পাট</option>
+                                <option>সবজি</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">কৃষি অভিজ্ঞতা (বছর)</label>
+                            <input type="number" class="form-control" placeholder="অভিজ্ঞতার বছর" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">বার্ষিক আয় (টাকায়)</label>
+                            <input type="number" class="form-control" placeholder="আনুমানিক বার্ষিক আয়" required>
+                        </div>
+                    </div>
+
+                    <h5 class="text-success mb-4">
+                        <i class="fas fa-file-invoice-dollar me-2"></i>ঋণের বিবরণ
+                    </h5>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">ঋণের ধরন</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>নির্বাচন করুন</option>
+                                <option>স্বল্প মেয়াদী ঋণ</option>
+                                <option>মধ্যম মেয়াদী ঋণ</option>
+                                <option>দীর্ঘ মেয়াদী ঋণ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">কাঙ্ক্ষিত ঋণের পরিমাণ (টাকা)</label>
+                            <input type="number" class="form-control" placeholder="ঋণের পরিমাণ লিখুন" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">ঋণের উদ্দেশ্য</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>উদ্দেশ্য নির্বাচন করুন</option>
+                                <option>বীজ ক্রয়</option>
+                                <option>সার ও কীটনাশক</option>
+                                <option>কৃষি যন্ত্রপাতি</option>
+                                <option>সেচ ব্যবস্থা</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">ঋণ পরিশোধের সময়কাল</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>সময়কাল নির্বাচন করুন</option>
+                                <option>৬ মাস</option>
+                                <option>১ বছর</option>
+                                <option>২ বছর</option>
+                                <option>৩ বছর</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                আমি সমস্ত শর্তাদি পড়েছি এবং স্বীকার করছি
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-success me-md-2" type="button" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> বাতিল
+                        </button>
+                        <button class="btn btn-success" type="submit">
+                            <i class="fas fa-paper-plane me-1"></i> আবেদন জমা দিন
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+   
+    document.querySelector('#loanModal form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('আপনার ঋণ আবেদন সফলভাবে জমা দেওয়া হয়েছে! শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।');
+        var modal = bootstrap.Modal.getInstance(document.getElementById('loanModal'));
+        modal.hide();
+        this.reset();
+    });
+</script>
+{% endblock content %}
