@@ -9,6 +9,7 @@ from ecommerce.models import SellerApplication
 from django.db.models import Q
 from ecommerce.forms import ProductForm
 from ecommerce.models import Product
+from ecommerce.views import merge_cart,_cart_id
 
 def loginFunction(request):
     if request.method == "POST":
@@ -16,9 +17,10 @@ def loginFunction(request):
         password = request.POST.get("password")
         
         user = authenticate(request, email=email, password=password)
-        
+        old_session_id = _cart_id(request)
         if user is not None:
             login(request, user)
+            merge_cart(request, user,old_session_id)
             messages.success(request, "সফলভাবে লগইন হয়েছে")
             return redirect('home')  
         else:

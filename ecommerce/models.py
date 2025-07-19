@@ -27,7 +27,7 @@ class ProductCategory(models.Model):
 UNIT_CHOICES = [
     ('kg', 'কেজি'),
     ('g', 'গ্রাম'),
-    ('l', '্লিটার'),
+    ('l', 'লিটার'),
     ('pc', 'পিস'),
 ]
 
@@ -71,7 +71,7 @@ class SellerApplication(models.Model):
     document = models.FileField(upload_to='documents/')
     status = models.CharField(choices=statusChoice,max_length=50,default="notapplied")
     applied_at = models.DateTimeField(auto_now_add=True)
-    approved_by = models.OneToOneField(User, on_delete=models.CASCADE, related_name='sellerapproved',null=True)
+    approved_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sellerapproved',null=True,blank=True)
     class Meta:
         verbose_name = 'বিক্রেতা আবেদন'
         verbose_name_plural = 'বিক্রেতা আবেদনসমূহ'
@@ -106,3 +106,25 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         self.total_price = self.product.price * self.quantity
         super().save(*args, **kwargs)
+
+
+class Cart(models.Model):
+    cart_id = models.CharField(max_length=250,blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.cart_id
+    
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="cartItem")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="cartProduct")
+    cart = models.ForeignKey(Cart,on_delete=models.CASCADE,null= True,related_name="cart")
+    quantity = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+    
+    def sub_total(self):
+        return self.product.price * self.quantity
+
+    def __str__(self):
+        return str(self.product)

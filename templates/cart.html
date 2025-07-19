@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-header mb-3">
+                    <h4><i class="fas fa-shopping-cart text-green me-2"></i>আপনার কার্ট</h4>
+                </div>
+                
+                {% if cart_items %}
+                {% for item in cart_items %}
+                <div class="cart-item p-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 col-4">
+                            <img src="{{item.product.image.url}}" class="product-img" alt="{{item.product.product_name}}">
+                        </div>
+                        <div class="col-md-5 col-8">
+                            <h6 class="mb-1">{{item.product.product_name}}</h6>
+                            <p class="small text-muted mb-2">দ্বারা: {{item.product.seller.first_name}}</p>
+                            <span class="badge bg-light text-dark small">{{item.product.location}}</span>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mt-md-0">
+                        <div class="input-group justify-content-center">
+                            <a href="{% url 'decrement' item.product.id %}" class="btn btn-outline-secondary px-3">
+                            <strong>-</strong>
+                            </a>
+                            <input type="text" class="form-control text-center" value="{{ item.quantity }}" style="max-width: 60px;" disabled>
+                            <a href="{% url 'increment' item.product.id %}" class="btn btn-outline-secondary px-3">
+                            <strong>+</strong>
+                            </a>
+                        </div>
+                        </div>
+
+                        <div class="col-md-2 col-6 text-md-end mt-3 mt-md-0 d-flex justify-content-evenly align-items-center">
+                            <h6 class="mb-0 text-green">৳{{item.product.price}}/{{item.product.unit}}</h6>
+                            <a href="{% url "removeItem" item.product.id %}" class="text-light small btn btn-danger btn-sm"><i class="fas fa-trash text"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                    <h1 class="text-center">কোনো আইটেম নেই !!</h1>
+                {% endif %}
+
+                
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+                <div class="summary-card">
+                    <h5 class="mb-4">অর্ডার সারাংশ</h5>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>পণ্যের মূল্য:</span>
+                        <span>৳{{total_price}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>ডেলিভারি চার্জ:</span>
+                        {% if cart_items %}
+                        <span>৳120</span>
+                        {% else %}
+                        <span>৳0</span>   
+                        {% endif %}
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                        <h6>মোট মূল্য:</h6>
+                        {% if cart_items %}
+                        <h5 class="text-green">৳{{grand_total}}</h5>
+                        {% else %}
+                        <h5 class="text-green">৳0</h5>
+                        {% endif %}
+                        
+                    </div>
+                    
+                    <button class="btn btn-primary w-100 py-2">
+                        <i class="fas fa-credit-card me-2"></i>পেমেন্ট সম্পন্ন করুন
+                    </button>
+                    <a href="{% url "removeCart" %}" class="btn btn-danger w-100 py-2 mt-4">
+                        <i class="fas fa-trash me-2"></i>কার্ট খালি করুন
+                    </a>
+                   
+                    <button class="btn btn-secondary w-100 py-2 mt-4">
+                        <a href="{% url "market" %}" class="text-decoration-none text-light">পণ্য ব্রাউজ করুন<i class="fas fa-arrow-right ms-2"></i></a>
+                    </button>
+                </div>
+                
+                <div class="payment-methods mt-4">
+                    <img src="{% static "image/payment.png" %}" alt="">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header {% if message.tags == 'error' %}bg-danger{% else %}bg-{{ message.tags }}{% endif %} text-white">
+                    <strong class="me-auto">
+                        {% if message.tags == 'error' %}
+                            Error
+                        {% elif message.tags == 'success' %}
+                            Success
+                        {% elif message.tags == 'warning' %}
+                            Warning
+                        {% else %}
+                            Message
+                        {% endif %}
+                    </strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+   {% endblock content %}

@@ -495,34 +495,75 @@
                                     <td>{{product.stock}}  {{product.get_unit_display}}</td>
                                     <td>
                                         <button  class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal{{ product.id }}"><i class="fas fa-edit"></i></button>
-                                        <a {% url "delete_Product" product.id %} class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                        <a href="{% url "delete_Product" product.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
 
 
 
-                                <!-- Edit Product Modal -->
-                                <div class="modal fade" id="editProductModal{{ product.id }}" tabindex="-1" aria-labelledby="editProductLabel{{ product.id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content">
-                                            <form method="POST" enctype="multipart/form-data" action="{% url 'edit_Product' product.id %}">
-                                                {% csrf_token %}
-                                                <div class="modal-header bg-success text-light">
-                                                    <h5 class="modal-title">পণ্য সম্পাদনা করুন</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<!-- Edit Product Modal -->
+                            <div class="modal fade" id="editProductModal{{ product.id }}" tabindex="-1" aria-labelledby="editProductLabel{{ product.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <form method="POST" enctype="multipart/form-data" action="{% url 'edit_Product' product.id %}">
+                                            {% csrf_token %}
+                                            <div class="modal-header bg-success text-light">
+                                                <h5 class="modal-title">পণ্য সম্পাদনা করুন</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label>পণ্যের নাম</label>
+                                                    <input type="text" name="product_name" value="{{ product.product_name }}" class="form-control" required>
                                                 </div>
-                                                <div class="modal-body">
-                                                    {{ product_form.as_p }}
+
+                                                <div class="mb-3">
+                                                    <label>দাম</label>
+                                                    <input type="number" name="price" value="{{ product.price }}" class="form-control" required>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-success">আপডেট করুন</button>
+
+                                                <div class="mb-3">
+                                                    <label>স্টক</label>
+                                                    <input type="number" name="stock" value="{{ product.stock }}" class="form-control" required>
                                                 </div>
-                                            </form>
-                                        </div>
+
+                                                <div class="mb-3">
+                                                    <label>একক (Unit)</label>
+                                                    <select name="unit" class="form-select" required>
+                                                        <option value="kg" {% if product.unit == 'kg' %}selected{% endif %}>কেজি</option>
+                                                        <option value="g" {% if product.unit == 'g' %}selected{% endif %}>গ্রাম</option>
+                                                        <option value="litre" {% if product.unit == 'litre' %}selected{% endif %}>লিটার</option>
+                                                        <option value="piece" {% if product.unit == 'piece' %}selected{% endif %}>টি</option>
+                                                        <!-- প্রয়োজন হলে আরও unit যোগ করো -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label>ছবি (Image)</label>
+                                                    <input type="file" name="image" class="form-control">
+                                                    {% if product.image %}
+                                                        <small class="text-muted">বর্তমান ছবি: {{ product.image.url }}</small>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>পণ্যটি কি সক্রিয়?</label>
+                                                    <select name="is_available" class="form-select">
+                                                        <option value="True" {% if product.is_available %}selected{% endif %}>হ্যাঁ</option>
+                                                        <option value="False" {% if not product.is_available %}selected{% endif %}>না</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল করুন</button>
+                                                <button type="submit" class="btn btn-success">আপডেট করুন</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-
-                                
+                            </div>
+   
 
 
                                 {% endfor %}
@@ -599,42 +640,6 @@
         </div>
     </div>
 </div>
-
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-                    <div class="content-section" id="myshop">
-                        <h4 class="section-title"><i class="fa fa-shopping-bag"></i> আমার দোকান</h4>
-                        
-                        
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
